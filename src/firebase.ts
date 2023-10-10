@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { connectAuthEmulator, getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCtRwhol8uI3Oy9F7u-_D-5JCtoSVK76tI',
@@ -13,7 +13,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-// export const firebaseAuthEmulator = 'http://127.0.0.1:9099';
-// if (import.meta.env.DEV) {
-//   firebase.auth().useEmulator(firebaseAuthEmulator);
-// }
+if (import.meta.env.DEV) {
+  connectAuthEmulator(auth, 'http://127.0.0.1:9099');
+}
